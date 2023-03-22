@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*-
 """
 Created on Fri Jan  6 11:01:28 2023
@@ -9,7 +10,7 @@ from matplotlib import pyplot as plt
 import time
 
 # Set the pseudo-random seed for reproducibility
-random.seed(0)
+
 
 # A variable to store the number of agents
 #n_agents = 500
@@ -63,11 +64,10 @@ def get_max_distance(ag):
     # Loop through and calculate distances
     max_distance = 0
     for i in range(len(ag)):
-        a = ag[i]
         for j in range(i + 1, len(ag)):
             #print("i", i, "j", j)
-            b = ag[j]
-            distance = get_distance(a.x, a.y, b.x, b.y)
+
+            distance = get_distance(ag[i].x, ag[i].y, ag[j].x, ag[j].y)
             #print("distance between", a, b, distance)
             max_distance = max(max_distance, distance)
             #print("max_distance", max_distance)
@@ -160,10 +160,10 @@ for n_agents in n_agents_range:
     
     # Initialise agents
     agents = []
-    for i in range(n_agents):
-        agents.append([random.randint(0, 99), random.randint(0, 99)])
+    #for i in range(n_agents):
+        #agents.append([random.randint(0, 99), random.randint(0, 99)])
         
-    print("Maximum distance between all the agents", get_max_distance())
+    print("Maximum distance between all the agents", get_max_distance(agents))
     max_start = time.perf_counter()
     max_end = time.perf_counter()
     max_run_time = max_end - max_start

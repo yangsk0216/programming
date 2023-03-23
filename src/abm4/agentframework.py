@@ -25,12 +25,14 @@ class Agent:
         self.x = random.randint(0, 99)
         self.y = random.randint(0, 99)
         pass
+    # make  something out more informative was output
     def __str__(self):
         return self.__class__.__name__ + "(i=" + str(self.i)+ ",x=" + str(self.x)+ ", y=" + str(self.y) + ")"
-    
+    # get the print function to print string representations when printing the agents list
     def __repr__(self):
         return str(self)
     
+    #make the point move Randomly with With restrictions 
     def move(self, x_min, y_min, x_max, y_max):
        
                 

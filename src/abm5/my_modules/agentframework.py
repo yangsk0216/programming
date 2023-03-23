@@ -40,11 +40,25 @@ class Agent:
     
         
     def eat(self):
+       
         if self.environment[self.y][self.x] >= 10:
             self.environment[self.y][self.x] -= 10
             self.store += 10
             
     def share(self, neighbourhood):
+        """
+        share the store in the range of neighbourhood
+
+        Parameters
+        ----------
+        neighbourhood : list
+            Distance Threshold
+
+        Returns
+        -------
+        None.
+
+        """
         # Create a list of agents in neighbourhood
         neighbours = []
         #print(self.agents[self.i])
@@ -69,6 +83,7 @@ class Agent:
         return str(self)
     
     def move(self, x_min, y_min, x_max, y_max):
+        #move randomly
         rn = random.random()
         if rn < 0.5:
             self.x =  self.x + 1

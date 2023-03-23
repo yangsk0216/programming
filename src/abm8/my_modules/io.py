@@ -23,7 +23,7 @@ def read_data():
     n_cols = len(data)
     n_rows = len(row)
     return data, n_cols, n_rows
-
+#Iterate over the data of data and write it to csv
 def write_data(address,data):
     f = open(address, 'w', newline = '')
     writer = csv.writer(f, delimiter = ',')

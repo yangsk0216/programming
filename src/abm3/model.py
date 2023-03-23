@@ -68,6 +68,15 @@ def get_max_distance():
     return max_distance
 
 def get_min_distance():
+    """
+    Calculate and return the minimum distance between all the agents
+
+    Returns
+    -------
+    min_distance : Number
+        The minimum distance betwee all the agents.
+
+    """
     min_distance = 0
     for i in range(len(agents)):
         a = agents[i]
@@ -80,7 +89,21 @@ def get_min_distance():
             #print("max_distance", max_distance)
     return min_distance
 
+
+
 def get_mean_distance():
+    """
+    Calculate and return the mean distance between all the agents
+
+    Returns
+    -------
+    mean_distance : Number
+    The mean distance betwee all the agents.
+        
+    distance : Number
+        The distance betwee all the agents.
+
+    """
     distance=[]
     for i in range(len(agents)):
         for j in range(i+1,len(agents)):
@@ -90,6 +113,15 @@ def get_mean_distance():
     return mean_distance,distance
 
 def get_standard_deviation():
+    """
+    Calculate and return the mean distance between all the agents
+
+    Returns
+    -------
+    std : Number
+    The standard distance betwee all the agents.
+        
+    """
     mean,distance=get_mean_distance()
     #The sum of the squares of the difference between each value and the mean
     sqrSum = 0
@@ -100,6 +132,15 @@ def get_standard_deviation():
     return std
 
 def get_median():
+   """
+    Calculate and return the median distance between all the agents
+
+    Returns
+    -------
+    median : Number
+       The median distance betwee all the agents.
+
+    """ 
    a, distance = get_mean_distance()
    
    distance.sort()
@@ -110,6 +151,15 @@ def get_median():
    return median
 
 def get_mode():
+    """
+    Calculate and return the mode distance between all the agents
+
+    Returns
+    -------
+    b : TYPE number
+        the mode distance between all the agents.
+
+    """
     a, distance = get_mean_distance()
     #new dictionary  
     zidian = {} 
@@ -125,6 +175,24 @@ def get_mode():
     return b
 
 def movement(x0,y0):
+    """
+    Let a point move once in the range of maximum and minimum and y
+    
+    Parameters
+    ----------
+    x0 : Number
+        x coordinate of one point.
+    y0 : Number
+        y coordinate of one point.
+
+    Returns
+    -------
+    x0 : Number
+        y coordinate of one point after movement.
+    y0 : Number
+        y coordinate of one point after movement.
+
+    """
     
     #print(agents)
     rn = random.random()
@@ -158,17 +226,22 @@ get_max_distance_run_times = []
 # A list to store times of get_min_distance
 get_min_distance_run_times = []
 
+#generate a list 
 n_agents_range = range(100,1000,100)
 
+#loop to generate list with different  elememtns
 for n_agents in n_agents_range:  
     # Initialise agents
     agents = []
     for i in range(n_agents):
         agents.append([random.randint(0, 99), random.randint(0, 99)])
-        
+     
+    #Record start time
     max_start = time.perf_counter()    
     print("Maximum distance between ",n_agents,"all the agents",get_max_distance())
+    #Record end time
     max_end = time.perf_counter()
+    #calculate the running  time
     max_run_time = max_end - max_start
     
     # min_start = time.perf_counter()
@@ -179,16 +252,21 @@ for n_agents in n_agents_range:
     print("Time taken to calculate ",n_agents,"maximum distance", max_run_time )
     # print("Time taken to calculate minimum distance", min_run_time)
     
+    #store the different time to generate different number lists
     get_max_distance_run_times.append(max_run_time)
+    
     # get_min_distance_run_times.append(min_run_time)
     # mean,distance= get_mean_distance()
     
 
 # Plot to show time of get max distance time
 plt.title("Time taken to calculate maximum distance for different numbers of agent")
+
 plt.xlabel("Number of agents")
+
 plt.ylabel("Time")
 
+#loop to get the x coordinate and y coordinate
 j = 0
 for i in n_agents_range:
     plt.scatter(i, get_max_distance_run_times[j], color='black')
@@ -210,7 +288,8 @@ plt.show()
 #movement
 #change coordinates
 #print(agents)
-#make constrains
+
+#make constrains and generate list
 list1=[]
 for i in range(20):
     list1.append([random.randint(0, 99), random.randint(0, 99)])
@@ -227,11 +306,12 @@ x_max = 99
 # The maximum y coordinate.
 y_max = 99
 
+#Move the point for 1000 times
 n_iterations = 1000
 for j in range(n_iterations):
     for i in range(len(list1)):
         list1[i][0],list1[i][1] = movement(list1[i][0],list1[i][1]) 
-        # Apply movement constraints.
+      
        
 #plot point after move             
 print(list1)

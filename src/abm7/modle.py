@@ -36,13 +36,16 @@ def plot():
     plt.scatter(sy.x, sy.y, color='green')
     
     global ite
+    #define the output address and save the generated image
     filename = '../../data/output/images/image' + str(ite) + '.png'
     plt.savefig(filename)
     plt.show
+    #Saving metadata to a list
     images.append(imageio.imread(filename))
     return fig
 
 def gen_function():
+    # return iterator to update, determine the number of update cycles
     global ite
     ite = 0
     global carry_on #Not actually needed as we're not assigning, but clearer
@@ -53,10 +56,11 @@ def gen_function():
     if data_written == False:
         # Write data
         print("write data")
+        # Write to file and generate animation at the end of the loop
         io.write_data('../../data/output/out7.txt', environment)
         imageio.mimsave('../../data/output/out7.gif', images, fps=3)
         data_written = True
-        
+#       
 def update(frames):
     # Model loop
     global carry_on
@@ -90,19 +94,34 @@ def update(frames):
 
     # Stopping condition
     # Random
-    #if random.random() < 0.1:
+    #if random.random() < 0.1: 
     if sum_as / n_agents > 80:
         carry_on = False
         print("stopping condition")
 
     # Plot
     global ite
+    #Draw a diagram at the end of each
     plot()
     ite = ite + 1
     
     
 #difine the function that add all the value in the environemnt    
 def sum_environment(environment):
+    """
+    #Calculates the sum of all values in the environment variable
+
+    Parameters
+    ----------
+    environment : LIST
+        basemap
+
+    Returns
+    -------
+    sum_environment : Number
+        The sum of all values in the environment
+
+    """
     sum_environment = 0
     for i in range(len(environment)):
         for j in range(len(environment[i])):
@@ -112,6 +131,19 @@ def sum_environment(environment):
 
 #difine the function that add all the value stored  
 def sum_agent_stores(agents):
+    """
+    Calculates the sum of all values that stored
+    Parameters
+    ----------
+    agents : LIST
+       Store the coordinates of the object
+
+    Returns
+    -------
+    sum_agent_stores : Number
+        sum of all values that stored
+
+    """
     sum_agent_stores = 0
     for i in range(len(agents)):
         sum_agent_stores += agents[i].store

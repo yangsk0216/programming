@@ -9,10 +9,24 @@ Created on Tue Mar  7 11:17:07 2023
 import csv
 
 
-# Read input data
+
 def read_data():
+    """
+    # Read input data
+
+    Returns
+    -------
+    data : list
+        the list that store the value of row
+    n_cols : Number
+        cols of environemnt.
+    n_rows : Number
+        rows of environemnt.
+       rows of environemnt.
+    """
     f = open('../../data/input/in.txt', newline='')
     data = []
+    #Iterate through the file to get all rows and columns
     for line in csv.reader(f, quoting=csv.QUOTE_NONNUMERIC):
         row = []
         for value in line:

@@ -69,7 +69,9 @@ def get_max_distance():
 
 # A list to store times
 run_times = []
+#generate the list to store the number to creat list 
 n_agents_range = range(500, 5000, 500)
+#loop to generate agents with different elements
 for n_agents in n_agents_range:
     
     # Initialise agents
@@ -79,9 +81,12 @@ for n_agents in n_agents_range:
     #print(agents)
     
     # Print the maximum distance between all the agents
+    #rocord the start time
     start = time.perf_counter()
     print("Maximum distance between all the agents", get_max_distance())
+    #rocord the end time
     end = time.perf_counter()
+    #calculate the running time
     run_time = end - start
     print("Time taken to calculate maximum distance", run_time)
     run_times.append(run_time)
@@ -90,6 +95,7 @@ for n_agents in n_agents_range:
 plt.title("Time taken to calculate maximum distance for different numbers of agent")
 plt.xlabel("Number of agents")
 plt.ylabel("Time")
+#loop to generate the x and ycoordinate
 j = 0
 for i in n_agents_range:
     plt.scatter(i, run_times[j], color='black')

@@ -39,8 +39,21 @@ class Agent:
         self.store = random.randint(0,99)
         self.store_shares = 0
         
-        
+        #
     def share(self, neighbourhood):
+        """
+        share the store in the range of neighbourhood
+
+        Parameters
+        ----------
+        neighbourhood : Number
+            Distance Threshold
+
+        Returns
+        -------
+        None.
+
+        """
         # Create a list of agents in neighbourhood
         neighbours = []
         #print(self.agents[self.i])
@@ -76,6 +89,7 @@ class Agent:
         return str(self)
     
     def move(self, x_min, y_min, x_max, y_max):
+        ##move randomly
         rn = random.random()
         if rn < 0.5:
             self.x =  self.x + 1
@@ -98,6 +112,21 @@ class Agent:
              self.y  = y_max
                 
 def sum_environment(environment):
+    """
+    sum the value of the environement
+
+    Parameters
+    ----------
+    environment : list
+        basemap.
+
+    Returns
+    -------
+    sum_environment : Number
+        The sum of all values in the environment
+
+    """
+    #Traversing arrays
     sum_environment = 0
     for i in range(len(environment)):
         for j in range(len(environment[i])):
@@ -105,11 +134,26 @@ def sum_environment(environment):
     return sum_environment
 
 def sum_agent_stores(agents):
+    """
+    sum the value of the environement that stored
+
+    Parameters
+    ----------
+    agents : LIST
+        List  stored coordinates
+
+    Returns
+    -------
+    sum_agent_stores : Number
+        The sum of all values in the environment that stored
+
+    """
     sum_agent_stores = 0
     for i in range(len(agents)):
         sum_agent_stores += agents[i].store
     return sum_agent_stores
-        
+      
+  #Output the sum of all values in the environment
 def output(digit):
     f = open("a.out", 'w')
     m = sum_environment(digit)

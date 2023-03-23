@@ -85,6 +85,16 @@ def get_max_distance():
     return max_distance
 
 def get_min_distance():
+    
+    """
+    Calculate and return the minimum distance between all the agents
+
+    Returns
+    -------
+    max_distance : Number
+        The minimum distance betwee all the agents.
+
+    """
     min_distance = 0
     for i in range(len(agents)):
         a = agents[i]
@@ -98,6 +108,17 @@ def get_min_distance():
     return min_distance
 
 def get_mean_distance():
+    """
+    Calculate and return the mean distance between all the agents
+
+    Returns
+    -------
+    mean_distance : Number
+        The mean distance betwee all the agents.
+   distance : Number   
+   The  distance betwee all the agents.
+
+    """
     distance=[]
     for i in range(len(agents)):
         for j in range(i+1,len(agents)):
@@ -107,6 +128,17 @@ def get_mean_distance():
     return mean_distance,distance
 
 def get_standard_deviation():
+    """
+    Calculate and return the standard distance between all the agents
+
+    Returns
+    -------
+    std : Number
+        The standard distance betwee all the agents.
+  
+
+    """
+    
     mean,distance=get_mean_distance()
     #The sum of the squares of the difference between each value and the mean
     sqrSum = 0
@@ -117,16 +149,37 @@ def get_standard_deviation():
     return std
 
 def get_median():
-   a, distance = get_mean_distance()
+    """
+    Calculate and return the median distance between all the agents
+
+    Returns
+    -------
+    median : Number
+        The median distance betwee all the agents.
+  
+
+    """ 
+    a, distance = get_mean_distance()
+    
+    distance.sort()
+    if len(distance) % 2 == 0:
+        median=(distance[len(distance)//2]+distance[len(distance)//2+1])/2
+    else:
+        median=distance[len(distance)//2+1]
+    return median
+    
    
-   distance.sort()
-   if len(distance) % 2 == 0:
-       median=(distance[len(distance)//2]+distance[len(distance)//2+1])/2
-   else:
-       median=distance[len(distance)//2+1]
-   return median
 
 def get_mode():
+    """
+    Calculate and return the mode distance between all the agents
+
+    Returns
+    -------
+    b : List
+        The mode distance "v"and the times "p"it appeared
+  
+    """ 
     a, distance = get_mean_distance()
     #new dictionary  
     zidian = {} 
@@ -142,6 +195,24 @@ def get_mode():
     return b
 
 def movement(x0,y0):
+    """
+    
+
+    Parameters
+    ----------
+    x0 : Number.
+        the x coordinate before move 
+    y0 : Number.
+        the y coordinate before move 
+
+    Returns
+    -------
+    x0 : Number
+        the x coordinate after move .
+    y0 : Number
+        the y coordinate after move ..
+
+    """
     
     #print(agents)
     rn = random.random()
@@ -187,6 +258,7 @@ plt.scatter(ly.x, ly.y, color='yellow')
 sy = min(agents, key=operator.attrgetter('y'))
 plt.scatter(sy.x, sy.y, color='green')
 
+#loop to get the x and y coordiante
 for i in range(len(agents)):
     plt.scatter(agents[i].x, agents[i].y, color='black')
     agents[i].move(x_min, y_min, x_max, y_max)

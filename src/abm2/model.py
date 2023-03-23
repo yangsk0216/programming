@@ -3,8 +3,6 @@ import matplotlib
 from matplotlib import pyplot as plt
 import operator
 
-
-
 # agents = []
 # # Initialise variable x0
 # x0 = random.randint(0, 99)
@@ -27,13 +25,9 @@ import operator
 # print(max(agents, key=operator.itemgetter(0)))
 # print(max(agents, key=operator.itemgetter(1)))
 
-
-
-
-
 # Create a list to store agents
 agents = []
-
+#create  agents that have 100 list
 n_agents = 100
 for i in range(100):
     agents.append([random.randint(0, 99), random.randint(0, 99)])
@@ -45,32 +39,28 @@ for i in range(100):
     
 # Move agents
 for i in range(n_agents):
-    # Change agents[i] coordinates randomly
-    # x-coordinate
+    # Change agents[i] x-coordinate randomly
+   
     rn = random.random()
     #print("rn", rn)
     if rn < 0.5:
         agents[i][0] = agents[i][0] + 1
     else:
         agents[i][0] = agents[i][0] - 1
-    # y-coordinate
+    # Change agents[i] y-coordinate randomly
     rn = random.random()
     #print("rn", rn)
     if rn < 0.5:
         agents[i][1] = agents[i][1] + 1
     else:
         agents[i][1] = agents[i][1] - 1
+        
 print("after move")         
 print(agents)
 
 # Plot the agents after move:
 for i in range(100):    
     plt.scatter(agents[i][0], agents[i][1], color='purple')
-
-# Get the coordinates with the largest x-coordinate
-# Get the coordinates with the smallest x-coordinate
-# Get the coordinates with the largest y-coordinate
-# Get the coordinates with the smallest y-coordinate
 
 
 #print the point with the max x value afer move

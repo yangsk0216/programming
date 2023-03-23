@@ -73,7 +73,7 @@ def get_distance(x0, y0, x1, y1):
 if __name__ == '__main__':
     #gain the value of environment,n_cols, n_rows
     environment,n_cols, n_rows = io.read_data()
-
+#Define Limits
     x_min=0
     x_max = n_cols - 1
     y_min=0
@@ -113,9 +113,11 @@ if __name__ == '__main__':
             agents[i].eat()
             #print(agents[i])
         # Share store
+        
         # Distribute shares
         for i in range(n_agents):
             agents[i].share(neighbourhood)
+            
         # Add store_shares to store and set store_shares back to zero
         for i in range(n_agents):
             print(agents[i])
@@ -162,6 +164,7 @@ if __name__ == '__main__':
         plt.savefig(filename)
         plt.show()
         plt.close()
+        
         images.append(imageio.imread(filename))
         # turned into an animated gif file
     imageio.mimsave('../../data/output/out.gif', images, fps=3)

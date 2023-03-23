@@ -11,6 +11,19 @@ import csv
 
 # Read input data
 def read_data():
+    """
+    
+
+    Returns
+    -------
+    data : LIST
+        Store a list of values within a row
+    n_cols : Number
+        cols.
+    n_rows : Number
+        rows.
+
+    """
     f = open('../../data/input/in.txt', newline='')
     data = []
     for line in csv.reader(f, quoting=csv.QUOTE_NONNUMERIC):
@@ -23,7 +36,7 @@ def read_data():
     n_cols = len(data)
     n_rows = len(row)
     return data, n_cols, n_rows
-
+#Iterate over the data of data and write it to csv
 def write_data(address,data):
     f = open(address, 'w', newline = '')
     writer = csv.writer(f, delimiter = ',')

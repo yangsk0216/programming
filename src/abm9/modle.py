@@ -35,7 +35,7 @@ def exiting():
     root.quit()
     root.destroy()
     #sys.exit(0)
-
+#plot
 def plot():
     fig.clear()
     plt.ylim(y_min, y_max)
@@ -62,7 +62,7 @@ def plot():
     plt.show
     images.append(imageio.imread(filename))
     return fig
-
+# return iterator
 def gen_function():
     global ite
     ite = 0
@@ -77,7 +77,7 @@ def gen_function():
         io.write_data('../../data/output/out7.txt', environment)
         imageio.mimsave('../../data/output/out7.gif', images, fps=3)
         data_written = True
-        
+#move and eat         
 def update(frames):
     # Model loop
     global carry_on
@@ -124,7 +124,23 @@ def update(frames):
     
 #difine the function that add all the value in the environemnt    
 def sum_environment(environment):
+    """
+    
+
+    Parameters
+    ----------
+    environment : List
+        basemap
+
+    Returns
+    -------
+    sum_environment : Number
+         The sum of all values in the environment
+
+
+    """
     sum_environment = 0
+    # Iterate through environemnt to find the sum
     for i in range(len(environment)):
         for j in range(len(environment[i])):
             sum_environment += environment[i][j]
@@ -175,6 +191,7 @@ if __name__ == '__main__':
     url = 'https://agdturner.github.io/resources/abm9/data.html'
     r = requests.get(url, verify=False)
     content = r.text
+    #Read xy coordinates from the web page
     soup = bs4.BeautifulSoup(content, 'html.parser')
     td_ys = soup.find_all(attrs={"class" : "y"})
     td_xs = soup.find_all(attrs={"class" : "x"})
@@ -191,22 +208,32 @@ if __name__ == '__main__':
     # Animate
     # Initialise fig and carry_on
     fig = plt.figure(figsize=(7, 7))
+    #Initialise axes
     ax = fig.add_axes([0, 0, 1, 1])
     carry_on = True
     data_written = False
     
     # GUI
+    #Instantiation
     root = tk.Tk()
+    #Naming
     root.wm_title("Agent Based Model")
+    #DefineCanvas
     canvas = matplotlib.backends.backend_tkagg.FigureCanvasTkAgg(fig, master=root)
     canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=1)
+    #Instantiated Menu Bar
     menu_bar = tk.Menu(root)
+    #define root directory
     root.config(menu=menu_bar)
     menu_0 = tk.Menu(menu_bar)
+    #root directory naming 
     menu_bar.add_cascade(label="Model", menu=menu_0)
+    #Subdirectory Naming 
     menu_0.add_command(label="Run model", command=lambda: run(canvas))
     menu_0.add_command(label="Write data", command=lambda: output())
+
     menu_0.add_command(label="Exit", command=lambda: exiting())
+    #Make Write data inaccessible
     menu_0.entryconfig("Write data", state="disabled")
     # Exit if the window is closed.
     root.protocol('WM_DELETE_WINDOW', exiting)

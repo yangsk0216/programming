@@ -48,6 +48,17 @@ class Agent:
         
         
     def share(self, neighbourhood):
+        """
+        Parameters
+        ----------
+        neighbourhood : Number
+            Sharing Threshold
+
+        Returns
+        -------
+        None.
+
+        """
         # Create a list of agents in neighbourhood
         neighbours = []
         #print(self.agents[self.i])

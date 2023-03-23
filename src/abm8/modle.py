@@ -18,12 +18,13 @@ import my_modules.geometry as geo
 import my_modules.io as io
 random.seed(0)
 
+#Click on run to run the function
 def run(canvas):
     animation = anim.FuncAnimation(fig, update, init_func=plot, frames=gen_function, repeat=False)
     animation.new_frame_seq()
     canvas.draw()
     
-def out():
+def output():
     pass    
 
 def exiting():
@@ -33,7 +34,8 @@ def exiting():
     root.quit()
     root.destroy()
     #sys.exit(0)
-
+    
+#plot
 def plot():
     fig.clear()
     plt.ylim(y_min, y_max)
@@ -57,10 +59,11 @@ def plot():
     global ite
     filename = '../../data/output/images/image' + str(ite) + '.png'
     plt.savefig(filename)
+    #Draw a diagram for each iteration
     plt.show
     images.append(imageio.imread(filename))
     return fig
-
+# return iterator
 def gen_function():
     global ite
     ite = 0
@@ -75,7 +78,8 @@ def gen_function():
         io.write_data('../../data/output/out7.txt', environment)
         imageio.mimsave('../../data/output/out7.gif', images, fps=3)
         data_written = True
-        
+
+#move and eat        
 def update(frames):
     # Model loop
     global carry_on
@@ -179,17 +183,25 @@ if __name__ == '__main__':
     data_written = False
     
     # GUI
+  #Instantiation
     root = tk.Tk()
+    #Naming
     root.wm_title("Agent Based Model")
+    #DefineCanvas
     canvas = matplotlib.backends.backend_tkagg.FigureCanvasTkAgg(fig, master=root)
     canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=1)
+    #Instantiated Menu Bar
     menu_bar = tk.Menu(root)
+    #define root directory
     root.config(menu=menu_bar)
     menu_0 = tk.Menu(menu_bar)
+    #root directory naming 
     menu_bar.add_cascade(label="Model", menu=menu_0)
+    #Subdirectory Naming 
     menu_0.add_command(label="Run model", command=lambda: run(canvas))
     menu_0.add_command(label="Write data", command=lambda: output())
     menu_0.add_command(label="Exit", command=lambda: exiting())
+    #Make Write data inaccessible
     menu_0.entryconfig("Write data", state="disabled")
     # Exit if the window is closed.
     root.protocol('WM_DELETE_WINDOW', exiting)

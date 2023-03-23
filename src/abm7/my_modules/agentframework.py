@@ -40,6 +40,19 @@ class Agent:
         
         
     def share(self, neighbourhood):
+        """
+        share the store in the range of neighbourhood
+
+        Parameters
+        ----------
+        neighbourhood : Number
+            Distance Threshold
+
+        Returns
+        -------
+        None.
+
+        """
         # Create a list of agents in neighbourhood
         neighbours = []
         #print(self.agents[self.i])
@@ -59,9 +72,10 @@ class Agent:
             
         
     def eat(self):
+        
         if self.store >= 100:
             self.environment[self.y][self.x]+=self.store/2
-            
+            self.store-=self.store/2
         if self.environment[self.y][self.x] >= 10:
             self.environment[self.y][self.x] -= 10
             self.store += 10

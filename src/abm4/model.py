@@ -23,7 +23,8 @@ n_agents = 10
 for i in range(n_agents):
     # Create an agent
     agents.append(af.Agent(i))
-    print(agents[i])
+    print("agents",i,agents[i])
+print("agents")
 print(agents)
 
 
@@ -168,8 +169,6 @@ def get_median():
         median=distance[len(distance)//2+1]
     return median
     
-   
-
 def get_mode():
     """
     Calculate and return the mode distance between all the agents
@@ -243,8 +242,19 @@ def movement(x0,y0):
 for i in range(len(agents)):
     for j in range(i+ 1,len(agents)):
         distance = get_distance(agents[i].x, agents[i].y, agents[j].x, agents[j].y)
-        print(distance)
+        print("diatance",distance)
         
+
+
+#loop to get the x and y coordiante
+for i in range(len(agents)):
+    plt.scatter(agents[i].x, agents[i].y, color='black')
+    agents[i].move(x_min, y_min, x_max, y_max)
+    plt.scatter(agents[i].x, agents[i].y, color='purple')
+
+
+
+
 # Plot the coordinate with the largest x red
 lx = max(agents, key=operator.attrgetter('x'))
 plt.scatter(lx.x, lx.y, color='red')
@@ -258,13 +268,8 @@ plt.scatter(ly.x, ly.y, color='yellow')
 sy = min(agents, key=operator.attrgetter('y'))
 plt.scatter(sy.x, sy.y, color='green')
 
-#loop to get the x and y coordiante
-for i in range(len(agents)):
-    plt.scatter(agents[i].x, agents[i].y, color='black')
-    agents[i].move(x_min, y_min, x_max, y_max)
-    plt.scatter(agents[i].x, agents[i].y, color='purple')
-plt.show()
 
+plt.show()
 
 
 

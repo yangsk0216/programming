@@ -25,6 +25,8 @@ def run(canvas):
     canvas.draw()
     
 def output():
+    io.write_data("../../data/output/abm8.txt", environment)
+    imageio.mimsave('../../data/output/outabm8.gif', images, fps=3)
     pass    
 
 def exiting():
@@ -63,20 +65,18 @@ def plot():
     plt.show
     images.append(imageio.imread(filename))
     return fig
+
 # return iterator
 def gen_function():
     global ite
-    ite = 0
-    global carry_on #Not actually needed as we're not assigning, but clearer
-    while (ite < n_iterations) & (carry_on) :
+    global carry_on
+    while (ite <= n_iterations) & (carry_on) :
         yield ite # Returns control and waits next call.
         ite = ite + 1
     global data_written
     if data_written == False:
-        # Write data
-        print("write data")
-        io.write_data('../../data/output/out7.txt', environment)
-        imageio.mimsave('../../data/output/out7.gif', images, fps=3)
+        # Set the Write data menu to normal.
+        menu_0.entryconfig("Write data", state="normal")
         data_written = True
 
 #move and eat        
@@ -157,7 +157,7 @@ if __name__ == '__main__':
     # Model loop
 
     n_agents = 10
-    n_iterations = 10
+    n_iterations = 1000
     neighbourhood = 10
     
     # Create directory to write images to.
@@ -192,6 +192,8 @@ if __name__ == '__main__':
     canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=1)
     #Instantiated Menu Bar
     menu_bar = tk.Menu(root)
+
+
     #define root directory
     root.config(menu=menu_bar)
     menu_0 = tk.Menu(menu_bar)

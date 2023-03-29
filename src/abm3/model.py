@@ -89,8 +89,6 @@ def get_min_distance():
             #print("max_distance", max_distance)
     return min_distance
 
-
-
 def get_mean_distance():
     """
     Calculate and return the mean distance between all the agents
@@ -219,12 +217,42 @@ def movement(x0,y0):
         
     return x0,y0
 
+def get_maxAndMinDistace():
+    """
+    
+
+    Parameters
+    ----------
+    x0 : Number
+        x coordiante.
+    y0 : Number
+        y coordinate.
+
+    Returns
+    -------
+    min_distance : Number
+        min distance among all agents.
+    max_distance : Number
+        max distance among all agetns.
+
+    """
+    min_distance = 0
+    max_distance = 0
+    for i in range(len(agents)):
+        a = agents[i]
+        for j in range(i + 1, len(agents)):
+            b = agents[j]
+            distance = get_distance(a[0], a[1], b[0], b[1])
+            min_distance = min(min_distance, distance)
+            max_distance = max(max_distance, distance)      
+    return (min_distance,max_distance)
      
- 
 # A list to store times of get_max_distance
 get_max_distance_run_times = []
 # A list to store times of get_min_distance
 get_min_distance_run_times = []
+# A list to store times of getMaxAndMindistance
+get_minAndMaxTimes=[]
 
 #generate a list 
 n_agents_range = range(100,1000,100)
@@ -236,30 +264,48 @@ for n_agents in n_agents_range:
     for i in range(n_agents):
         agents.append([random.randint(0, 99), random.randint(0, 99)])
      
-    #Record start time
+    #Record start time to calculate the max distance
     max_start = time.perf_counter()    
     print("Maximum distance between ",n_agents,"all the agents",get_max_distance())
-    #Record end time
+    #Record end time to calculate the max distance
     max_end = time.perf_counter()
-    #calculate the running  time
+    #calculate the running  time to calculate the max distance
     max_run_time = max_end - max_start
     
-    # min_start = time.perf_counter()
-    # print("Minimum distance between all the agents", get_min_distance())
-    # min_end = time.perf_counter()
-    # min_run_time = min_end - min_start
+    
+    #Record start time to calculate the min distance
+    min_start = time.perf_counter()
+    print("Minimum distance between all the agents", get_min_distance())
+    #Record end time to calculate the min distance
+    min_end = time.perf_counter()
+    #calculate the running  time to calculate the min distance
+    min_run_time = min_end - min_start
+    
+    
+    
+    #Record start time to calculate the max and min distance
+    maxAndMinstart = time.perf_counter()    
+    print("Maximum distance between ",n_agents,"all the agents",get_maxAndMinDistace())
+    #Record end time to calculate the max and min distance
+    maxAndMinend = time.perf_counter()
+    #calculate the running  time to calculate the max and min distance
+    maxAndMinstart_run_time = maxAndMinend - maxAndMinstart
+    
+    
         
     print("Time taken to calculate ",n_agents,"maximum distance", max_run_time )
-    # print("Time taken to calculate minimum distance", min_run_time)
+    print("Time taken to calculate ", n_agents,"minimum distance",min_run_time)
+    print("Time taken to calculate ", n_agents,"minimum and maximum distance",maxAndMinstart_run_time)
     
-    #store the different time to generate different number lists
+    
+    #store the time to generate different number lists
     get_max_distance_run_times.append(max_run_time)
+    get_min_distance_run_times.append(min_run_time)
+    get_minAndMaxTimes.append(maxAndMinstart_run_time)
     
-    # get_min_distance_run_times.append(min_run_time)
-    # mean,distance= get_mean_distance()
     
 
-# Plot to show time of get max distance time
+# Plot to show time of get max distance 
 plt.title("Time taken to calculate maximum distance for different numbers of agent")
 
 plt.xlabel("Number of agents")
@@ -269,20 +315,32 @@ plt.ylabel("Time")
 #loop to get the x coordinate and y coordinate
 j = 0
 for i in n_agents_range:
-    plt.scatter(i, get_max_distance_run_times[j], color='black')
+    plt.scatter(i, get_max_distance_run_times[j], color='blue')
     j = j + 1
 plt.show()
 
 
-# Plot to show time of get min distance time
-# plt.title("Time taken to calculate minimum distance for different numbers of agent")
-# plt.xlabel("Number of agents")
-# plt.ylabel("Time")
-# j = 0
-# for i in n_agents_range:
-#     plt.scatter(i, get_min_distance_run_times[j], color='black')
-#     j = j + 1
-# plt.show()
+#Plot to show time of get min distance 
+plt.title("Time taken to calculate minimum distance for different numbers of agent")
+plt.xlabel("Number of agents")
+plt.ylabel("Time")
+j = 0
+for i in n_agents_range:
+    plt.scatter(i, get_min_distance_run_times[j], color='red')
+    j = j + 1
+plt.show()
+
+#Plot to show time of get min and max distance 
+plt.title("Time taken to calculate minimum and maximum distance for different numbers of agent")
+plt.xlabel("Number of agents")
+plt.ylabel("Time")
+j = 0
+for i in n_agents_range:
+    plt.scatter(i, get_minAndMaxTimes[j], color='purple')
+    j = j + 1
+plt.show()
+
+
 
 
 #movement
@@ -293,7 +351,8 @@ plt.show()
 list1=[]
 for i in range(20):
     list1.append([random.randint(0, 99), random.randint(0, 99)])
-#plot point before move    
+#plot point before move 
+print("before move")   
 print(list1)
 
 
@@ -312,7 +371,7 @@ for j in range(n_iterations):
     for i in range(len(list1)):
         list1[i][0],list1[i][1] = movement(list1[i][0],list1[i][1]) 
       
-       
+print("after move")        
 #plot point after move             
 print(list1)
 

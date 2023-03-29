@@ -1,7 +1,4 @@
-
-
-
-from my_modules import geometry
+import my_modules.geometry as geometry
 import random
 
 random.seed(3)
@@ -76,6 +73,9 @@ class Agent:
         if self.environment[self.y][self.x] >= 10:
             self.environment[self.y][self.x] -= 10
             self.store += 10
+        else:
+            self.store += self.environment[self.y][self.x]
+            self.environment[self.y][self.x] = 0
         if self.store > 100:
             #Change the eat function so that if an agent store goes above 100, then half the store is released back to the environment at the agent's location.
             self.environment[self.y][self.x] += self.store/2
@@ -153,12 +153,7 @@ def sum_agent_stores(agents):
         sum_agent_stores += agents[i].store
     return sum_agent_stores
       
-  #Output the sum of all values in the environment
-def output(digit):
-    f = open("a.out", 'w')
-    m = sum_environment(digit)
-    f.write(str(m))
-    f.close()            
+           
         
         
         

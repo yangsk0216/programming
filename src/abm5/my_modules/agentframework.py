@@ -44,6 +44,9 @@ class Agent:
         if self.environment[self.y][self.x] >= 10:
             self.environment[self.y][self.x] -= 10
             self.store += 10
+        else:
+           self.store += self.environment[self.y][self.x]
+           self.environment[self.y][self.x] = 0
             
     def share(self, neighbourhood):
         """

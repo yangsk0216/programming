@@ -19,6 +19,7 @@ if rn < 0.5:
 else:
     x0 = x0 - 1
 print("x0", x0)
+
 #initialise  x0, y0, x1 ,and y1
 x0=random.randint(0, 99)
 y0=random.randint(0, 99)

@@ -9,7 +9,7 @@ from matplotlib import pyplot as plt
 import random
 import my_modules.agentframework as af
 import my_modules.io as io
-random.seed(6)
+random.seed(9)
 
 # difine a function that adds up all the values in environment.
 def sum_value(environment):
@@ -58,7 +58,7 @@ agents = []
 plt.ylim(y_min, y_max)
 plt.xlim(x_min, x_max)
 
-interaction = 1000
+n_interaction = 1000
 
 n_agents = 10
 for i in range(n_agents):
@@ -68,14 +68,14 @@ for i in range(n_agents):
    #plot every agents x coordinate,agents y coordinate before move
    plt.scatter(agents[i].x,agents[i].y, color='white')
    
-   for j in range(interaction):
+   for j in range(n_interaction):
        #run the function eat
         agents[i].move(x_min, y_min, x_max, y_max)
         
-       #run the function eat
+       #run the function eatz
         agents[i].eat()
    #plot every agents x coordinate,agents y coordinate after move    
-   #plt.scatter(agents[i].x,agents[i].y, color='red') 
+   plt.scatter(agents[i].x,agents[i].y, color='black') 
    
 #plot the agents on the environment  
 plt.imshow(environment)
@@ -98,14 +98,21 @@ plt.show()
 
 #all the values in environment
 a = sum_value(environment)
-#all the values in environment
-print("all the value in the environment",a)
+#all the values in environment after eat
+print("all the value in the environment after eat",a)
 
 
 #all the store values 
 b = sum_store_value(agents)
 # print all the store values 
 print("all the value store",b)
+
+#the sum of all the values in environment before eat,it never change 
+c = a + b
+print("all the value in the orgional environment",c)
+
+# write out the values of environment after eat
+io.write_data("../../data/output/outAbm5.txt",environment)
 
 
 

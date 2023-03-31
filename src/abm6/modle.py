@@ -4,6 +4,7 @@ Created on Tue Feb 28 11:10:53 2023
 
 @author: yang
 """
+
 import imageio
 import os
 import operator
@@ -82,8 +83,6 @@ if __name__ == '__main__':
     # Initialise agents
     agents = []
 
-    
-
     # Model loop
 
     n_agents = 10
@@ -113,7 +112,6 @@ if __name__ == '__main__':
             agents[i].eat()
             #print(agents[i])
         # Share store
-        
         # Distribute shares
         for i in range(n_agents):
             agents[i].share(neighbourhood)
@@ -169,7 +167,7 @@ if __name__ == '__main__':
         # turned into an animated gif file
     imageio.mimsave('../../data/output/out.gif', images, fps=3)
 
-   
+io.write_data("../../data/output/outabm6.txt",environment)   
        
        
 

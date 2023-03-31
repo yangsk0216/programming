@@ -2,6 +2,30 @@ import random
 import matplotlib
 from matplotlib import pyplot as plt
 import operator
+import math
+
+# Set the pseudo-random seed for reproducibility
+random.seed(0)
+
+
+# Calculate the Euclidean distance between (x0, y0) and (x1, y1)
+# Set x0 and y0 to equal 0, x1 to equal 3, and y1 to equal 4
+x0 = 0
+y0 = 0
+x1 = 3
+y1 = 4
+# Calculate the difference in the x coordinates.
+dx = x0 - x1
+# Calculate the difference in the y coordinates.
+dy = y0 - y1
+# Square the differences and add the squares
+ssd = (dx * dx) + (dy * dy)
+print("ssd", ssd)
+# Calculate the square root
+distance = ssd ** 0.5
+print("distance", distance)
+distance = math.sqrt(ssd)
+print("distance", distance)
 
 # agents = []
 # # Initialise variable x0
@@ -25,11 +49,13 @@ import operator
 # print(max(agents, key=operator.itemgetter(0)))
 # print(max(agents, key=operator.itemgetter(1)))
 
+
+
 # Create a list to store agents
 agents = []
 #create  agents that have 100 list
 n_agents = 100
-for i in range(100):
+for i in range(n_agents):
     agents.append([random.randint(0, 99), random.randint(0, 99)])
 print("before move")   
 print(agents)
@@ -59,11 +85,12 @@ print("after move")
 print(agents)
 
 # Plot the agents after move:
-for i in range(100):    
+for i in range(n_agents):    
     plt.scatter(agents[i][0], agents[i][1], color='purple')
 
 
 #print the point with the max x value afer move
+print("max x")
 print(max(agents, key=operator.itemgetter(0)))
 
 # Get the coordinates with the largest x-coordinate afer move

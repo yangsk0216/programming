@@ -16,6 +16,7 @@ import my_modules.io as io
 random.seed(0)
 
 def plot():
+    print(2)
     fig.clear()
     plt.ylim(y_min, y_max)
     plt.xlim(x_min, x_max)
@@ -50,18 +51,22 @@ def gen_function():
     ite = 0
     global carry_on #Not actually needed as we're not assigning, but clearer
     while (ite < n_iterations) & (carry_on) :
+        print(0)
         yield ite # Returns control and waits next call.
+        print(3)
         ite = ite + 1
     global data_written
     if data_written == False:
+        print(4)
         # Write data
         print("write data")
         # Write to file and generate animation at the end of the loop
         io.write_data('../../data/output/out7.txt', environment)
         imageio.mimsave('../../data/output/out7.gif', images, fps=3)
         data_written = True
-#       
+      
 def update(frames):
+    print(1)
     # Model loop
     global carry_on
     #for ite in range(n_iterations):
@@ -103,7 +108,7 @@ def update(frames):
     global ite
     #Draw a diagram at the end of each
     plot()
-    ite = ite + 1
+    #ite = ite + 1
     
     
 #difine the function that add all the value in the environemnt    

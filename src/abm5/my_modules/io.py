@@ -41,6 +41,7 @@ def write_data(file_path, environment):
     with open(file_path, 'w', newline='') as f:
         writer = csv.writer(f, quoting=csv.QUOTE_NONNUMERIC)
         writer.writerows(environment)
+        #1
     
 
 

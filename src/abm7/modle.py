@@ -35,7 +35,6 @@ def plot():
     # Plot the coordinate with the smallest y green
     sy = min(agents, key=operator.attrgetter('y'))
     plt.scatter(sy.x, sy.y, color='green')
-    
     global ite
     #define the output address and save the generated image
     filename = '../../data/output/images/image' + str(ite) + '.png'

@@ -25,9 +25,11 @@ def run(canvas):
     canvas.draw()
     
 def output():
+    # Write data
+    print("write data")
     io.write_data("../../data/output/abm8.txt", environment)
     imageio.mimsave('../../data/output/outabm8.gif', images, fps=3)
-    pass    
+        
 
 def exiting():
     """
@@ -75,8 +77,10 @@ def gen_function():
         ite = ite + 1
     global data_written
     if data_written == False:
-        # Set the Write data menu to normal.
-        menu_0.entryconfig("Write data", state="normal")
+        # Write data
+        print("write data")
+        io.write_data('../../data/output/out.txt', environment)
+        imageio.mimsave('../../data/output/out.gif', images, fps=3)
         data_written = True
 
 #move and eat        

@@ -112,7 +112,7 @@ def get_mean_distance():
 
 def get_standard_deviation():
     """
-    Calculate and return the mean distance between all the agents
+    Calculate and return the standard deviation between all the agents
 
     Returns
     -------
@@ -154,9 +154,13 @@ def get_mode():
 
     Returns
     -------
-    b : TYPE number
+    b : TYPE:list
         the mode distance between all the agents.
 
+    K:number
+    the most times appeared
+    v:number 
+    the most appear times
     """
     a, distance = get_mean_distance()
     #new dictionary  
@@ -204,7 +208,7 @@ def movement(x0,y0):
         y0 = y0 + 1
     else:
         y0 = y0 - 1
-        
+    # make a constrain    
     if x0 < x_min:
           x0 = x_min
     if y0 < y_min:
@@ -220,7 +224,7 @@ def movement(x0,y0):
 def get_maxAndMinDistace():
     """
     
-
+    calculate the max and min distance at once and compare it with the time that calculate seperately
     Parameters
     ----------
     x0 : Number
@@ -292,7 +296,7 @@ for n_agents in n_agents_range:
     maxAndMinstart_run_time = maxAndMinend - maxAndMinstart
     
     
-        
+    #print
     print("Time taken to calculate ",n_agents,"maximum distance", max_run_time )
     print("Time taken to calculate ", n_agents,"minimum distance",min_run_time)
     print("Time taken to calculate ", n_agents,"minimum and maximum distance",maxAndMinstart_run_time)
@@ -307,7 +311,7 @@ for n_agents in n_agents_range:
 
 # Plot to show time of get max distance 
 plt.title("Time taken to calculate maximum distance for different numbers of agent")
-
+#Set the coordinate name
 plt.xlabel("Number of agents")
 
 plt.ylabel("Time")

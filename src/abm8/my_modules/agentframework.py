@@ -70,6 +70,14 @@ class Agent:
             
         
     def eat(self):
+        """
+        def a function to eat
+
+        Returns
+        -------
+        None.
+
+        """
         if self.store >= 100:
             self.environment[self.y][self.x]+=self.store/2
             self.store-=self.store/2
@@ -88,6 +96,25 @@ class Agent:
         return str(self)
     
     def move(self, x_min, y_min, x_max, y_max):
+        """
+        let the point move
+
+        Parameters
+        ----------
+        x_min : Number
+            the x limit.
+        y_min : Number
+            the y limit.
+        x_max : Number
+            The x max limit.
+        y_max : Number
+            The y max limit.
+
+        Returns
+        -------
+        None.
+
+        """
         rn = random.random()
         if rn < 0.5:
             self.x =  self.x + 1

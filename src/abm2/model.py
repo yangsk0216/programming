@@ -112,7 +112,7 @@ plt.scatter(agents_max_y[0],agents_max_y[1],color="yellow")
 #plot the point with the smallest y-coordinate afer move
 plt.scatter(agents_min_y[0],agents_min_y[1],color="green")
 
-
+#plot
 plt.show()
 
 

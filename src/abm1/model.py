@@ -4,7 +4,7 @@
 import random
 import math
 
-#
+#Set the seed(seed) of the random number generator to test
 random.seed(0)
 
 x0 = 0
@@ -14,6 +14,7 @@ print("y0", y0)
 rn = random.random()
 print(rn)
 
+#Let x0 change
 if rn < 0.5:
     x0 = x0 + 1
 else:
@@ -23,9 +24,9 @@ print("x0", x0)
 #initialise  x0, y0, x1 ,and y1
 x0=random.randint(0, 99)
 y0=random.randint(0, 99)
-
 x1=random.randint(0, 99)
 y1=random.randint(0, 99)
+
 print("x0", x0)
 print("y0", y0)
 print("x1", x1)
@@ -44,7 +45,7 @@ distance=math.sqrt(sq_add)
 print(distance)
 
 
-#change coordinates
+#change (x0,y0) coordinates
 rn = random.random()
 if rn < 0.5:
     x0 = x0 + 1
@@ -56,7 +57,7 @@ if rn < 0.5:
     y0 = y0 + 1
 else:
     y0 = y0 - 1
-    
+ #change (x1,y1) coordinates   
 rn = random.random()    
 if rn < 0.5:
     x1 = x1 + 1
